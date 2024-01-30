@@ -1,11 +1,4 @@
 Devise.setup do |config|
-  # The secret key used by Devise. Devise uses this key to generate
-  # random tokens. Changing this key will render invalid all existing
-  # confirmation, reset password and unlock tokens in the database.
-  # Devise will use the `secret_key_base` as its `secret_key`
-  # by default. You can change it below and use your own secret key.
-  # config.secret_key = '052f4cdbd4add5d453911d491ea1c36467778c2742bdc26a039b48bc4b9ad815097e38b08240b80bcf603daffa65544d5e247f3287a6f540598b4e2e8355e6cd'
-
   config.mailer_sender = 'mauriliohrc@gmail.com'
 
   require 'devise/orm/active_record'
@@ -29,6 +22,6 @@ Devise.setup do |config|
     jwt.secret = Rails.application.credentials.devise_jwt_secret_key!
     jwt.dispatch_requests = [ ['POST', %r{^/login$}] ]
     jwt.revocation_requests = [ ['DELETE', %r{^logout$}] ]
-    jwt.expiration_time = 1.minutes.to_i
+    jwt.expiration_time = 60.minutes.to_i
   end
 end
