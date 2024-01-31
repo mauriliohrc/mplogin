@@ -5,8 +5,8 @@ class Users::SessionsController < Devise::SessionsController
 
   def respond_with(resource, _opts = {})
     render json: {
-        status: { code: 200, message: 'Logged in sucessfully.' },
-        data: current_user
+        status: { code: 200, message: 'Logado com sucesso' },
+        data: current_token 
     }, status: :ok
   end
 
@@ -22,5 +22,9 @@ class Users::SessionsController < Devise::SessionsController
                 message: "Couldn't find an active session."
             }, status: :unauthorized
         end
+  end
+
+  def current_token
+    request.env['warden-jwt_auth.token']
   end
 end
