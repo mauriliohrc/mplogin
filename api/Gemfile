@@ -14,6 +14,9 @@ gem 'devise-jwt'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
+  gem 'rspec-rails'
+  gem 'byebug'
+  gem 'timecop'
 end
 
 group :development do
