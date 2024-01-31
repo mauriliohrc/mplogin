@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, 
         :registerable, 
         :jwt_authenticatable, 
+        :timeoutable,
         jwt_revocation_strategy: JwtDenylist
 
 end

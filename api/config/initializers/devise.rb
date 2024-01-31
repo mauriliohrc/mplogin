@@ -8,6 +8,7 @@ Devise.setup do |config|
   config.skip_session_storage = [:http_auth]
   config.stretches = Rails.env.test? ? 1 : 12
   config.reconfirmable = true
+  #config.maximum_attempts = 20
   config.remember_for = 1.minutes
   config.expire_all_remember_me_on_sign_out = true
   config.password_length = 6..128
@@ -17,11 +18,12 @@ Devise.setup do |config|
   config.sign_out_via = :delete
   config.responder.error_status = :unprocessable_entity
   config.responder.redirect_status = :see_other
+  config.timeout_in = 1.minutes
 
   config.jwt do |jwt|
     jwt.secret = Rails.application.credentials.devise_jwt_secret_key!
     jwt.dispatch_requests = [ ['POST', %r{^/login$}] ]
     jwt.revocation_requests = [ ['DELETE', %r{^logout$}] ]
-    jwt.expiration_time = 60.minutes.to_i
+    jwt.expiration_time = 1.minutes.to_i
   end
 end
